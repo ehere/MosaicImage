@@ -301,7 +301,7 @@
      <string>เริ่มทำงาน</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="width">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -311,7 +311,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="height">
     <property name="geometry">
      <rect>
       <x>430</x>

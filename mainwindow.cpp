@@ -277,6 +277,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    ui->width->setValidator(new QIntValidator(20,150,this));
+    ui->height->setValidator(new QIntValidator(20,150,this));
 }
 
 MainWindow::~MainWindow()
@@ -347,14 +349,15 @@ void MainWindow::on_btn_start_clicked()
     //pixel_folder
     this->pixelFolder = "pixels/";
     //pixel_size
-    this->pixelSize = Size(50, 50);
+    int width = ui->width->text().toInt();
+    int height = ui->height->text().toInt();
+    this->pixelSize = Size(width, height);
     //resize
-    this->resize_x = 0.1;
-    this->resize_y = 0.1;
+    float percent = ui->comboBox->currentText().toFloat();
+    this->resize_x = percent/10.0;
+    this->resize_y = percent/10.0;
     //skip_interval
     this->skip_interval = 100;
-    int percent = ui->comboBox->currentText().toInt();
-    cout << "hi "<< percent << "I'm here" << flush ;
 
     fs::path dir(this->pixelFolder);
     if(fs::create_directory(this->pixelFolder)){
