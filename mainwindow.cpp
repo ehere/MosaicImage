@@ -383,7 +383,7 @@ void MainWindow::on_btn_start_clicked()
             pixel.copyTo(output.rowRange(i*this->pixelSize.height, i*this->pixelSize.height + this->pixelSize.height).colRange(j*this->pixelSize.width, j*this->pixelSize.width + this->pixelSize.width));
         }
     }
-    ui->pic_original->setPixmap(QPixmap::fromImage(Mat2QImage(output)));
+    ui->pic_process->setPixmap(QPixmap::fromImage(Mat2QImage(output)));
     imwrite(this->targetFolder, output);
 
     cout << endl << "Done. Mosaic image has been written to output.png" << endl;
