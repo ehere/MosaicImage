@@ -118,7 +118,7 @@
       <x>610</x>
       <y>70</y>
       <width>141</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -129,16 +129,16 @@
      </font>
     </property>
     <property name="text">
-     <string>สถานะการทำงาน : </string>
+     <string>สถานะ : </string>
     </property>
    </widget>
    <widget class="QLabel" name="status">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>700</x>
       <y>70</y>
-      <width>181</width>
-      <height>21</height>
+      <width>231</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -164,10 +164,10 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>680</y>
-      <width>181</width>
-      <height>21</height>
+      <x>10</x>
+      <y>670</y>
+      <width>571</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -180,14 +180,17 @@
     <property name="text">
      <string>ตัวอย่างรูปเริ่มต้น</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>680</y>
-      <width>181</width>
-      <height>21</height>
+      <x>620</x>
+      <y>670</y>
+      <width>561</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -199,6 +202,9 @@
     </property>
     <property name="text">
      <string>ตัวอย่างรูปที่เสร็จแล้ว</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="pic_path">
@@ -402,7 +408,7 @@
      <x>0</x>
      <y>0</y>
      <width>1199</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

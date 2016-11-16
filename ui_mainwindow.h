@@ -91,11 +91,11 @@ public:
         label_4->setFont(font);
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(610, 70, 141, 21));
+        label_5->setGeometry(QRect(610, 70, 141, 31));
         label_5->setFont(font);
         status = new QLabel(centralWidget);
         status->setObjectName(QStringLiteral("status"));
-        status->setGeometry(QRect(760, 70, 181, 21));
+        status->setGeometry(QRect(790, 70, 151, 21));
         progressBar = new QProgressBar(centralWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setEnabled(false);
@@ -146,7 +146,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1199, 21));
+        menuBar->setGeometry(QRect(0, 0, 1199, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -168,7 +168,7 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "X", 0));
         label_3->setText(QApplication::translate("MainWindow", "\340\270\202\340\270\231\340\270\262\340\270\224\340\270\243\340\270\271\340\270\233", 0));
         label_4->setText(QApplication::translate("MainWindow", "\340\270\242\340\271\210\340\270\255\340\270\202\340\270\231\340\270\262\340\270\224\340\270\243\340\270\271\340\270\233\340\270\225\340\271\211\340\270\231\340\270\211\340\270\232\340\270\261\340\270\232\340\271\200\340\270\253\340\270\245\340\270\267\340\270\255", 0));
-        label_5->setText(QApplication::translate("MainWindow", "\340\270\252\340\270\226\340\270\262\340\270\231\340\270\260\340\270\201\340\270\262\340\270\243\340\270\227\340\270\263\340\270\207\340\270\262\340\270\231 : ", 0));
+        label_5->setText(QApplication::translate("MainWindow", "\340\270\252\340\270\226\340\270\262\340\270\231\340\270\260 : ", 0));
         status->setText(QApplication::translate("MainWindow", "TextLabel", 0));
         label_6->setText(QApplication::translate("MainWindow", "\340\270\225\340\270\261\340\270\247\340\270\255\340\270\242\340\271\210\340\270\262\340\270\207\340\270\243\340\270\271\340\270\233\340\271\200\340\270\243\340\270\264\340\271\210\340\270\241\340\270\225\340\271\211\340\270\231", 0));
         label_7->setText(QApplication::translate("MainWindow", "\340\270\225\340\270\261\340\270\247\340\270\255\340\270\242\340\271\210\340\270\262\340\270\207\340\270\243\340\270\271\340\270\233\340\270\227\340\270\265\340\271\210\340\271\200\340\270\252\340\270\243\340\271\207\340\270\210\340\271\201\340\270\245\340\271\211\340\270\247", 0));
