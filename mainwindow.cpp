@@ -362,7 +362,7 @@ void MainWindow::on_btn_start_clicked()
     for (int i = 0; i < src.rows; ++i){
         for (int j = 0; j < src.cols; ++j){
             count += 1;
-            if(count % 100 == 0){
+            if(count % 500 == 0){
                 percentage = round((count * 100) / (src.rows * src.cols));
                 ui->progressBar->setValue(percentage);
             }
