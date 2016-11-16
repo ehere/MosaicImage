@@ -148,7 +148,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1199, 21));
+        menuBar->setGeometry(QRect(0, 0, 1199, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -158,6 +158,9 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
+
+        comboBox->setCurrentIndex(4);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -182,6 +185,8 @@ public:
         btn_save_folder->setText(QApplication::translate("MainWindow", "\340\270\204\340\271\211\340\270\231\340\270\253\340\270\262", 0));
         pic_final_path->setPlaceholderText(QApplication::translate("MainWindow", "\340\271\202\340\270\237\340\270\245\340\271\200\340\270\224\340\270\255\340\270\243\340\271\214\340\270\233\340\270\245\340\270\262\340\270\242\340\270\227\340\270\262\340\270\207", 0));
         btn_start->setText(QApplication::translate("MainWindow", "\340\271\200\340\270\243\340\270\264\340\271\210\340\270\241\340\270\227\340\270\263\340\270\207\340\270\262\340\270\231", 0));
+        width->setText(QApplication::translate("MainWindow", "50", 0));
+        height->setText(QApplication::translate("MainWindow", "50", 0));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "1", 0)

@@ -77,21 +77,6 @@ Vec3b mean(const Mat3b& m){
 }
 
 /*
-self explanatory
-*/
-void printProgress(int percentage, unsigned elapsed, unsigned etl){
-    cout << "\rProgress:|";
-    char bar_length = 15;
-    char number_of_progress_chars = round(percentage * bar_length / 100);
-
-    for (unsigned j = 0; j < number_of_progress_chars; ++j) cout << "=";
-    cout << ">";
-    for (unsigned j = 0; j < bar_length - number_of_progress_chars; ++j) cout << " ";
-    cout << "| " << percentage << "%, Time elapsed: " << elapsed << " seconds, ETL: " << etl << " seconds.";
-
-}
-
-/*
 extracts exif orientations from jpeg files.
 useful if you have pictures taken with smartphones
 */
@@ -195,9 +180,6 @@ void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, const stri
         ui->progressBar->setValue(percentage);
         unsigned elapsed = double(end - begin) / CLOCKS_PER_SEC;
         unsigned etl = (double(elapsed) / i)*(images.size() - i);
-
-
-        printProgress(percentage, elapsed, etl);
 
     }
     out_index.close();
@@ -326,8 +308,6 @@ void MainWindow::on_btn_save_folder_clicked()
                                                   tr("Images (*.png *.xpm *.jpg)"));
     ui->pic_final_path->setText(folder);
     this->targetFolder = folder.toUtf8().constData();
-    this->targetFolder.append("/output.png");
-
 }
 
 QImage Mat2QImage(const cv::Mat3b &src) {
@@ -352,8 +332,8 @@ void MainWindow::on_btn_start_clicked()
     this->pixelSize = Size(width, height);
     //resize
     float percent = ui->comboBox->currentText().toFloat();
-    this->resize_x = percent/10.0;
-    this->resize_y = percent/10.0;
+    this->resize_x = percent/100.0;
+    this->resize_y = percent/100.0;
     //skip_interval
     this->skip_interval = 100;
 
@@ -375,8 +355,17 @@ void MainWindow::on_btn_start_clicked()
     Mat3b output(src.rows*this->pixelSize.height, src.cols*this->pixelSize.width);
     vector<unsigned char> forbidden(index.size());
 
+    int percentage = 0;
+    ui->status->setText("Rendering images...");
+    ui->progressBar->setValue(percentage);
+    long count = 0;
     for (int i = 0; i < src.rows; ++i){
         for (int j = 0; j < src.cols; ++j){
+            count += 1;
+            if(count % 100 == 0){
+                percentage = round((count * 100) / (src.rows * src.cols));
+                ui->progressBar->setValue(percentage);
+            }
 
             if (((i*src.cols + j) % this->skip_interval) == 0)
                 forbidden = vector<unsigned char>(index.size());
@@ -390,10 +379,11 @@ void MainWindow::on_btn_start_clicked()
             pixel.copyTo(output.rowRange(i*this->pixelSize.height, i*this->pixelSize.height + this->pixelSize.height).colRange(j*this->pixelSize.width, j*this->pixelSize.width + this->pixelSize.width));
         }
     }
+    ui->status->setText("Saving File...");
     ui->pic_process->setPixmap(QPixmap::fromImage(Mat2QImage(output)));
     imwrite(this->targetFolder, output);
-
-    cout << endl << "Done. Mosaic image has been written to output.png" << endl;
+    ui->status->setText("Done.");
+    ui->progressBar->setValue(100);
 
 }
 
