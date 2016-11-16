@@ -154,8 +154,6 @@ void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, const stri
     fs::create_directory(pixelFolder);
     ofstream out_index(pixelFolder + index_filename);
 
-    clock_t begin = clock();
-
     for (unsigned i = 0; i < images.size(); ++i)
     {
         Mat3b img = imread(images[i]);
@@ -173,13 +171,9 @@ void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, const stri
 
         out_index << out_filename.str() << "\t" << (int)mean_color[0] << " " << (int)mean_color[1] << " " << (int)mean_color[2] << endl;
 
-        //Measuring time for progress...
-        clock_t end = clock();
         int percentage = round(double(i) * 100 / images.size());
         ui->status->setText("Pixelizing images...");
         ui->progressBar->setValue(percentage);
-        unsigned elapsed = double(end - begin) / CLOCKS_PER_SEC;
-        unsigned etl = (double(elapsed) / i)*(images.size() - i);
 
     }
     out_index.close();
@@ -259,6 +253,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    this->setWindowTitle("Photo Mosaic");
     ui->width->setValidator(new QIntValidator(20,150,this));
     ui->height->setValidator(new QIntValidator(20,150,this));
 }

@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = MosaicImage
 TEMPLATE = app
 
+RC_ICONS += mosaic-icon.ico
 
 SOURCES += main.cpp\
         mainwindow.cpp \
