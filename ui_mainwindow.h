@@ -50,10 +50,7 @@ public:
     QLineEdit *pic_folder;
     QPushButton *btn_3;
     QLineEdit *pic_final_path;
-<<<<<<< HEAD
     QPushButton *btn_start;
-=======
->>>>>>> origin/master
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -69,10 +66,7 @@ public:
         pic_original->setObjectName(QStringLiteral("pic_original"));
         pic_original->setGeometry(QRect(20, 250, 551, 411));
         pic_original->setAutoFillBackground(true);
-<<<<<<< HEAD
         pic_original->setScaledContents(true);
-=======
->>>>>>> origin/master
         pic_process = new QLabel(centralWidget);
         pic_process->setObjectName(QStringLiteral("pic_process"));
         pic_process->setGeometry(QRect(620, 250, 551, 411));
@@ -108,18 +102,11 @@ public:
         label_5->setFont(font);
         status = new QLabel(centralWidget);
         status->setObjectName(QStringLiteral("status"));
-<<<<<<< HEAD
         status->setGeometry(QRect(760, 70, 181, 21));
         progressBar = new QProgressBar(centralWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setEnabled(false);
         progressBar->setGeometry(QRect(610, 100, 331, 23));
-=======
-        status->setGeometry(QRect(760, 70, 221, 21));
-        progressBar = new QProgressBar(centralWidget);
-        progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setGeometry(QRect(610, 100, 371, 23));
->>>>>>> origin/master
         progressBar->setValue(24);
         label_6 = new QLabel(centralWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
@@ -147,12 +134,9 @@ public:
         pic_final_path = new QLineEdit(centralWidget);
         pic_final_path->setObjectName(QStringLiteral("pic_final_path"));
         pic_final_path->setGeometry(QRect(610, 20, 371, 31));
-<<<<<<< HEAD
         btn_start = new QPushButton(centralWidget);
         btn_start->setObjectName(QStringLiteral("btn_start"));
         btn_start->setGeometry(QRect(950, 70, 111, 51));
-=======
->>>>>>> origin/master
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -189,10 +173,7 @@ public:
         pic_folder->setPlaceholderText(QApplication::translate("MainWindow", "\340\271\202\340\270\237\340\270\245\340\271\200\340\270\224\340\270\255\340\270\243\340\271\214\340\270\243\340\270\271\340\270\233\340\270\240\340\270\262\340\270\236\340\270\233\340\270\243\340\270\260\340\270\201\340\270\255\340\270\232", 0));
         btn_3->setText(QApplication::translate("MainWindow", "\340\270\204\340\271\211\340\270\231\340\270\253\340\270\262", 0));
         pic_final_path->setPlaceholderText(QApplication::translate("MainWindow", "\340\271\202\340\270\237\340\270\245\340\271\200\340\270\224\340\270\255\340\270\243\340\271\214\340\270\233\340\270\245\340\270\262\340\270\242\340\270\227\340\270\262\340\270\207", 0));
-<<<<<<< HEAD
         btn_start->setText(QApplication::translate("MainWindow", "\340\271\200\340\270\243\340\270\264\340\271\210\340\270\241\340\270\227\340\270\263\340\270\207\340\270\262\340\270\231", 0));
-=======
->>>>>>> origin/master
     } // retranslateUi
 
 };
