@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -21,7 +22,6 @@
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -33,12 +33,9 @@ public:
     QWidget *centralWidget;
     QLabel *pic_original;
     QLabel *pic_process;
-    QTextBrowser *height;
-    QTextBrowser *width;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
-    QTextBrowser *percentage;
     QLabel *label_5;
     QLabel *status;
     QProgressBar *progressBar;
@@ -51,6 +48,10 @@ public:
     QPushButton *btn_3;
     QLineEdit *pic_final_path;
     QPushButton *btn_start;
+    QLineEdit *lineEdit;
+    QLineEdit *lineEdit_2;
+    QComboBox *comboBox;
+    QLabel *label_8;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -72,15 +73,9 @@ public:
         pic_process->setGeometry(QRect(620, 250, 551, 411));
         pic_process->setAutoFillBackground(true);
         pic_process->setScaledContents(true);
-        height = new QTextBrowser(centralWidget);
-        height->setObjectName(QStringLiteral("height"));
-        height->setGeometry(QRect(450, 130, 101, 21));
-        width = new QTextBrowser(centralWidget);
-        width->setObjectName(QStringLiteral("width"));
-        width->setGeometry(QRect(300, 130, 101, 21));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(420, 130, 16, 21));
+        label_2->setGeometry(QRect(390, 130, 16, 31));
         QFont font;
         font.setPointSize(12);
         font.setBold(true);
@@ -88,15 +83,12 @@ public:
         label_2->setFont(font);
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(190, 130, 61, 21));
+        label_3->setGeometry(QRect(110, 130, 141, 31));
         label_3->setFont(font);
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(190, 160, 181, 21));
+        label_4->setGeometry(QRect(230, 180, 221, 31));
         label_4->setFont(font);
-        percentage = new QTextBrowser(centralWidget);
-        percentage->setObjectName(QStringLiteral("percentage"));
-        percentage->setGeometry(QRect(400, 160, 151, 21));
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(610, 70, 141, 21));
@@ -138,6 +130,19 @@ public:
         btn_start = new QPushButton(centralWidget);
         btn_start->setObjectName(QStringLiteral("btn_start"));
         btn_start->setGeometry(QRect(950, 70, 111, 51));
+        lineEdit = new QLineEdit(centralWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(250, 130, 113, 31));
+        lineEdit_2 = new QLineEdit(centralWidget);
+        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_2->setGeometry(QRect(430, 130, 121, 31));
+        comboBox = new QComboBox(centralWidget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(470, 180, 41, 31));
+        label_8 = new QLabel(centralWidget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(520, 180, 31, 31));
+        label_8->setFont(font);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -175,6 +180,20 @@ public:
         btn_3->setText(QApplication::translate("MainWindow", "\340\270\204\340\271\211\340\270\231\340\270\253\340\270\262", 0));
         pic_final_path->setPlaceholderText(QApplication::translate("MainWindow", "\340\271\202\340\270\237\340\270\245\340\271\200\340\270\224\340\270\255\340\270\243\340\271\214\340\270\233\340\270\245\340\270\262\340\270\242\340\270\227\340\270\262\340\270\207", 0));
         btn_start->setText(QApplication::translate("MainWindow", "\340\271\200\340\270\243\340\270\264\340\271\210\340\270\241\340\270\227\340\270\263\340\270\207\340\270\262\340\270\231", 0));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "1", 0)
+         << QApplication::translate("MainWindow", "2", 0)
+         << QApplication::translate("MainWindow", "3", 0)
+         << QApplication::translate("MainWindow", "4", 0)
+         << QApplication::translate("MainWindow", "5", 0)
+         << QApplication::translate("MainWindow", "6", 0)
+         << QApplication::translate("MainWindow", "7", 0)
+         << QApplication::translate("MainWindow", "8", 0)
+         << QApplication::translate("MainWindow", "9", 0)
+         << QApplication::translate("MainWindow", "10", 0)
+        );
+        label_8->setText(QApplication::translate("MainWindow", "%", 0));
     } // retranslateUi
 
 };
