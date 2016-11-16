@@ -321,11 +321,9 @@ void MainWindow::on_btn_select_imageset_folder_clicked()
 
 void MainWindow::on_btn_save_folder_clicked()
 {
-    QString folder = QFileDialog::getExistingDirectory(
-                this,
-                tr("Select Folder"),
-                current_working_directory().c_str(),
-                QFileDialog::ShowDirsOnly);
+    QString folder = QFileDialog::getSaveFileName(this, tr("Save File"),
+                                                  "/home/untitled.png",
+                                                  tr("Images (*.png *.xpm *.jpg)"));
     ui->pic_final_path->setText(folder);
     this->targetFolder = folder.toUtf8().constData();
     this->targetFolder.append("/output.png");
