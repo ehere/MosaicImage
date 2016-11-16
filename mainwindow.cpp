@@ -282,7 +282,7 @@ void MainWindow::on_btn_select_image_clicked()
         QImage image;
         bool valid = image.load(filename);
         if(valid){
-            ui->pic_original->setPixmap(QPixmap::fromImage(image));
+            ui->pic_original->setPixmap(QPixmap::fromImage(image).scaled(ui->pic_original->size(),Qt::KeepAspectRatio));
         }else{
             //
         }
@@ -380,7 +380,7 @@ void MainWindow::on_btn_start_clicked()
         }
     }
     ui->status->setText("Saving File...");
-    ui->pic_process->setPixmap(QPixmap::fromImage(Mat2QImage(output)));
+    ui->pic_process->setPixmap(QPixmap::fromImage(Mat2QImage(output)).scaled(ui->pic_process->size(),Qt::KeepAspectRatio));
     imwrite(this->targetFolder, output);
     ui->status->setText("Done.");
     ui->progressBar->setValue(100);
