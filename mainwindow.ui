@@ -29,6 +29,9 @@
     <property name="text">
      <string/>
     </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="pic_process">
     <property name="geometry">
@@ -161,7 +164,7 @@
      <rect>
       <x>760</x>
       <y>70</y>
-      <width>221</width>
+      <width>181</width>
       <height>21</height>
      </rect>
     </property>
@@ -170,11 +173,14 @@
     </property>
    </widget>
    <widget class="QProgressBar" name="progressBar">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>610</x>
       <y>100</y>
-      <width>371</width>
+      <width>331</width>
       <height>23</height>
      </rect>
     </property>
@@ -301,6 +307,19 @@
     </property>
     <property name="placeholderText">
      <string>โฟลเดอร์ปลายทาง</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_start">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>70</y>
+      <width>111</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>เริ่มทำงาน</string>
     </property>
    </widget>
   </widget>

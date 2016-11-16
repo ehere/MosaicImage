@@ -301,7 +301,7 @@ int main(int argc, char** argv){
     MainWindow w;
     w.show();
 
-    string init_file = "settings.ini";
+    /*string init_file = "settings.ini";
     Params p;
     istringstream ss;
     //dataset
@@ -365,6 +365,6 @@ int main(int argc, char** argv){
         imwrite("output.png", output);
 
         cout << endl << "Done. Mosaic image has been written to output.png" << endl;
-    }
+    }*/
        return a.exec();
 }
