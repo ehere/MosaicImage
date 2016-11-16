@@ -71,6 +71,7 @@ public:
         pic_process->setObjectName(QStringLiteral("pic_process"));
         pic_process->setGeometry(QRect(620, 250, 551, 411));
         pic_process->setAutoFillBackground(true);
+        pic_process->setScaledContents(true);
         height = new QTextBrowser(centralWidget);
         height->setObjectName(QStringLiteral("height"));
         height->setGeometry(QRect(450, 130, 101, 21));
@@ -107,7 +108,7 @@ public:
         progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setEnabled(false);
         progressBar->setGeometry(QRect(610, 100, 331, 23));
-        progressBar->setValue(24);
+        progressBar->setValue(0);
         label_6 = new QLabel(centralWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(200, 680, 181, 21));

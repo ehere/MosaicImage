@@ -56,8 +56,12 @@ private slots:
 
     void on_btn_start_clicked();
 
+    void computePixelsAndIndex(const string& imagesSetFolder, const string& pixelFolder, Size s, const string& index_filename);
+
 private:
     Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H
+
+

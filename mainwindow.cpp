@@ -88,6 +88,7 @@ void printProgress(int percentage, unsigned elapsed, unsigned etl){
     cout << ">";
     for (unsigned j = 0; j < bar_length - number_of_progress_chars; ++j) cout << " ";
     cout << "| " << percentage << "%, Time elapsed: " << elapsed << " seconds, ETL: " << etl << " seconds.";
+
 }
 
 /*
@@ -157,8 +158,7 @@ void rectifyByOrientation(Mat3b& img, char orientation){
 precomputes all the small images ("pixels") that will form the mosaic.
 Also stores in an index (index_filename) the mapping with the mean color.
 */
-void
-computePixelsAndIndex(const string& imagesSetFolder, const string& pixelFolder, Size s, const string& index_filename){
+void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, const string& pixelFolder, Size s, const string& index_filename){
 
     cout << "Pixelizing images from " << imagesSetFolder << ". This might take a while." << endl;
     vector<string> images;
@@ -191,16 +191,20 @@ computePixelsAndIndex(const string& imagesSetFolder, const string& pixelFolder, 
         //Measuring time for progress...
         clock_t end = clock();
         int percentage = round(double(i) * 100 / images.size());
-
+        ui->status->setText("Pixelizing images...");
+        ui->progressBar->setValue(percentage);
         unsigned elapsed = double(end - begin) / CLOCKS_PER_SEC;
         unsigned etl = (double(elapsed) / i)*(images.size() - i);
 
+
         printProgress(percentage, elapsed, etl);
+
     }
     out_index.close();
 
     cout << endl << "Done." << endl;
 }
+
 
 /*
 reads the precomputed mean colors from file
@@ -389,3 +393,5 @@ void MainWindow::on_btn_start_clicked()
     cout << endl << "Done. Mosaic image has been written to output.png" << endl;
 
 }
+
+
