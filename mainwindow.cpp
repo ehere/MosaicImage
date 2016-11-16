@@ -57,3 +57,8 @@ void MainWindow::on_btn_3_clicked()
 }
 
 
+
+void MainWindow::on_btn_start_clicked()
+{
+
+}
