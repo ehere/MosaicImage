@@ -73,6 +73,7 @@ public:
         pic_original->setSizePolicy(sizePolicy);
         pic_original->setAutoFillBackground(true);
         pic_original->setScaledContents(false);
+        pic_original->setAlignment(Qt::AlignCenter);
         pic_process = new QLabel(centralWidget);
         pic_process->setObjectName(QStringLiteral("pic_process"));
         pic_process->setGeometry(QRect(620, 250, 551, 411));
@@ -80,6 +81,7 @@ public:
         pic_process->setSizePolicy(sizePolicy);
         pic_process->setAutoFillBackground(true);
         pic_process->setScaledContents(false);
+        pic_process->setAlignment(Qt::AlignCenter);
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(390, 130, 16, 31));
@@ -155,7 +157,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1199, 21));
+        menuBar->setGeometry(QRect(0, 0, 1199, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -181,7 +183,7 @@ public:
         label_3->setText(QApplication::translate("MainWindow", "\340\270\202\340\270\231\340\270\262\340\270\224\340\270\243\340\270\271\340\270\233", 0));
         label_4->setText(QApplication::translate("MainWindow", "\340\270\242\340\271\210\340\270\255\340\270\202\340\270\231\340\270\262\340\270\224\340\270\243\340\270\271\340\270\233\340\270\225\340\271\211\340\270\231\340\270\211\340\270\232\340\270\261\340\270\232\340\271\200\340\270\253\340\270\245\340\270\267\340\270\255", 0));
         label_5->setText(QApplication::translate("MainWindow", "\340\270\252\340\270\226\340\270\262\340\270\231\340\270\260 : ", 0));
-        status->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        status->setText(QApplication::translate("MainWindow", "Idle", 0));
         label_6->setText(QApplication::translate("MainWindow", "\340\270\225\340\270\261\340\270\247\340\270\255\340\270\242\340\271\210\340\270\262\340\270\207\340\270\243\340\270\271\340\270\233\340\271\200\340\270\243\340\270\264\340\271\210\340\270\241\340\270\225\340\271\211\340\270\231", 0));
         label_7->setText(QApplication::translate("MainWindow", "\340\270\225\340\270\261\340\270\247\340\270\255\340\270\242\340\271\210\340\270\262\340\270\207\340\270\243\340\270\271\340\270\233\340\270\227\340\270\265\340\271\210\340\271\200\340\270\252\340\270\243\340\271\207\340\270\210\340\271\201\340\270\245\340\271\211\340\270\247", 0));
         pic_path->setText(QString());

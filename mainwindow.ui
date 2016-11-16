@@ -38,6 +38,9 @@
     <property name="scaledContents">
      <bool>false</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="pic_process">
     <property name="geometry">
@@ -62,6 +65,9 @@
     </property>
     <property name="scaledContents">
      <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -429,7 +435,7 @@
      <x>0</x>
      <y>0</y>
      <width>1199</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
