@@ -286,7 +286,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_btn_1_clicked()
+void MainWindow::on_btn_select_image_clicked()
 {
     QString filename = QFileDialog::getOpenFileName(
                 this,
@@ -307,7 +307,7 @@ void MainWindow::on_btn_1_clicked()
     }
 }
 
-void MainWindow::on_btn_2_clicked()
+void MainWindow::on_btn_select_imageset_folder_clicked()
 {
     QString folder = QFileDialog::getExistingDirectory(
                 this,
@@ -319,7 +319,7 @@ void MainWindow::on_btn_2_clicked()
 }
 
 
-void MainWindow::on_btn_3_clicked()
+void MainWindow::on_btn_save_folder_clicked()
 {
     QString folder = QFileDialog::getExistingDirectory(
                 this,

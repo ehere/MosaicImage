@@ -223,7 +223,7 @@
      <string>รูปต้นฉบับ</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_1">
+   <widget class="QPushButton" name="btn_select_image">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -236,7 +236,7 @@
      <string>ค้นหา</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_2">
+   <widget class="QPushButton" name="btn_select_imageset_folder">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -262,7 +262,7 @@
      <string>โฟลเดอร์รูปภาพประกอบ</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_3">
+   <widget class="QPushButton" name="btn_save_folder">
     <property name="geometry">
      <rect>
       <x>980</x>
@@ -408,7 +408,7 @@
      <x>0</x>
      <y>0</y>
      <width>1199</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

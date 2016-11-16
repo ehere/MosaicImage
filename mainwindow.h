@@ -48,11 +48,11 @@ public:
     char mosaicize;
     unsigned skip_interval;
 private slots:
-    void on_btn_1_clicked();
+    void on_btn_select_image_clicked();
 
-    void on_btn_2_clicked();
+    void on_btn_select_imageset_folder_clicked();
 
-    void on_btn_3_clicked();
+    void on_btn_save_folder_clicked();
 
     void on_btn_start_clicked();
 
