@@ -306,6 +306,7 @@ QImage Mat2QImage(const cv::Mat3b &src) {
 
 void MainWindow::on_btn_start_clicked()
 {
+    ui->btn_start->setEnabled(false);
     //pixel_size
     int width = ui->width->text().toInt();
     int height = ui->height->text().toInt();
@@ -353,11 +354,12 @@ void MainWindow::on_btn_start_clicked()
         }
     }
     ui->status->setText("Saving File...");
+    ui->status->repaint();
     ui->pic_process->setPixmap(QPixmap::fromImage(Mat2QImage(output)).scaled(ui->pic_process->size(),Qt::KeepAspectRatio));
     imwrite(this->targetFolder, output);
     ui->status->setText("Done.");
     ui->progressBar->setValue(100);
-
+    ui->btn_start->setEnabled(true);
 }
 
 
