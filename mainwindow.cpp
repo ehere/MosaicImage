@@ -129,7 +129,7 @@ void rectifyByOrientation(Mat3b& img, char orientation){
 
 /*
 precomputes all the small images ("pixels") that will form the mosaic.
-Also stores in an index (index_filename) the mapping with the mean color.
+Also stores a mapping with the mean color.
 */
 void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, Size s){
 
@@ -201,7 +201,7 @@ ImageMean nearestImage(const vector<ImageMean>& index, Vec3b color, vector<unsig
 }
 
 /*
-reads the file holding parameters settings
+get working_directory path
 */
 std::string current_working_directory()
 {
