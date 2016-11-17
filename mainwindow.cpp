@@ -13,19 +13,13 @@
 #include <direct.h>
 #include <ctime>
 #include "exif.h"
+#include <map>
 
 namespace fs = ::boost::filesystem;
 
 using namespace std;
 using namespace cv;
 
-/*
-structure to map an image to its mean color
-*/
-struct ImageMean{
-    string name;
-    Vec3b mean;
-};
 
 bool isInVector(const string& str, const vector<string>& vec){
     for (string s : vec){
@@ -143,16 +137,12 @@ void rectifyByOrientation(Mat3b& img, char orientation){
 precomputes all the small images ("pixels") that will form the mosaic.
 Also stores in an index (index_filename) the mapping with the mean color.
 */
-void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, const string& pixelFolder, Size s, const string& index_filename){
+void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, Size s){
 
-    cout << "Pixelizing images from " << imagesSetFolder << ". This might take a while." << endl;
     vector<string> images;
     vector<string> extensions = { ".jpg", ".jpeg", ".JPG", ".JPEG" };
     get_all(imagesSetFolder, extensions, images);
 
-    fs::remove_all(pixelFolder);
-    fs::create_directory(pixelFolder);
-    ofstream out_index(pixelFolder + index_filename);
 
     for (unsigned i = 0; i < images.size(); ++i)
     {
@@ -165,39 +155,19 @@ void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, const stri
         Mat3b resized;
         cv::resize(img, resized, s);
 
-        ostringstream out_filename;
-        out_filename << pixelFolder << setfill('0') << setw(5) << i << ".png";
-        imwrite(out_filename.str(), resized);
-
-        out_index << out_filename.str() << "\t" << (int)mean_color[0] << " " << (int)mean_color[1] << " " << (int)mean_color[2] << endl;
+        this->pixelImageMap[to_string(i)] = resized;
+        ImageMean mean;
+        mean.name = to_string(i);
+        mean.mean = Vec3b((int)mean_color[0], (int)mean_color[1], (int)mean_color[2]);
+        this->pixelMeanVector.push_back(mean);
 
         int percentage = round(double(i) * 100 / images.size());
         ui->status->setText("Pixelizing images...");
         ui->progressBar->setValue(percentage);
 
     }
-    out_index.close();
-
-    cout << endl << "Done." << endl;
 }
 
-
-/*
-reads the precomputed mean colors from file
-*/
-void readIndexFile(const string& index_filename, vector<ImageMean>& index){
-    ifstream in(index_filename);
-    string line;
-    while (getline(in, line)){
-        stringstream ss(line);
-        ImageMean im;
-        unsigned r, g, b;
-        ss >> im.name >> b >> g >> r;
-
-        im.mean = Vec3b(b, g, r);
-        index.push_back(im);
-    }
-}
 
 /*
 utility structure for sorting (by similarity)
@@ -319,8 +289,6 @@ QImage Mat2QImage(const cv::Mat3b &src) {
 
 void MainWindow::on_btn_start_clicked()
 {
-    //pixel_folder
-    this->pixelFolder = "pixels/";
     //pixel_size
     int width = ui->width->text().toInt();
     int height = ui->height->text().toInt();
@@ -332,17 +300,9 @@ void MainWindow::on_btn_start_clicked()
     //skip_interval
     this->skip_interval = 100;
 
-    fs::path dir(this->pixelFolder);
-    if(fs::create_directory(this->pixelFolder)){
-        std::cerr<< "Directory Created: "<< this->pixelFolder <<std::endl;
-    }
+    computePixelsAndIndex(this->imagesSetFolder, this->pixelSize);
 
-    computePixelsAndIndex(this->imagesSetFolder, this->pixelFolder, this->pixelSize, this->index_filename);
-
-
-    cout << "Rendering mosaic for image " << this->originalImageFilePath << "..." << endl;
-    vector<ImageMean> index;
-    readIndexFile(this->pixelFolder + this->index_filename, index);
+    vector<ImageMean> index = this->pixelMeanVector;
 
     Mat3b src = imread(this->originalImageFilePath);
 
@@ -368,7 +328,8 @@ void MainWindow::on_btn_start_clicked()
             Vec3b color = src(i, j);
 
             ImageMean best_match = nearestImage(index, color, forbidden);
-            Mat3b pixel = imread(best_match.name);
+
+            Mat3b pixel = this->pixelImageMap[best_match.name];
 
             Rect bound(j*this->pixelSize.width, i*this->pixelSize.height, this->pixelSize.width, this->pixelSize.height);
             pixel.copyTo(output.rowRange(i*this->pixelSize.height, i*this->pixelSize.height + this->pixelSize.height).colRange(j*this->pixelSize.width, j*this->pixelSize.width + this->pixelSize.width));

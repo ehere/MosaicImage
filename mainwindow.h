@@ -28,6 +28,14 @@ namespace Ui {
 class MainWindow;
 }
 
+/*
+structure to map an image to its mean color
+*/
+struct ImageMean{
+    string name;
+    Vec3b mean;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -35,11 +43,19 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+private slots:
+    void on_btn_select_image_clicked();
+    void on_btn_select_imageset_folder_clicked();
+    void on_btn_save_folder_clicked();
+    void on_btn_start_clicked();
+    void computePixelsAndIndex(const string& imagesSetFolder, Size s);
+
+private:
+    Ui::MainWindow *ui;
     string targetFolder;
     string originalImageFilePath;
     string imagesSetFolder;
-    string pixelFolder;
-    string index_filename = "index.txt";
     Size pixelSize;
     string input_image;
     double resize_x;
@@ -47,19 +63,8 @@ public:
     char pixelize;
     char mosaicize;
     unsigned skip_interval;
-private slots:
-    void on_btn_select_image_clicked();
-
-    void on_btn_select_imageset_folder_clicked();
-
-    void on_btn_save_folder_clicked();
-
-    void on_btn_start_clicked();
-
-    void computePixelsAndIndex(const string& imagesSetFolder, const string& pixelFolder, Size s, const string& index_filename);
-
-private:
-    Ui::MainWindow *ui;
+    map<string,Mat3b> pixelImageMap;
+    vector<ImageMean> pixelMeanVector;
 };
 
 #endif // MAINWINDOW_H
