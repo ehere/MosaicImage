@@ -34,7 +34,7 @@ bool isInVector(const string& str, const vector<string>& vec){
 seeks recursively in root for all files having extension ext,
 and builds the list ret
 */
-void get_all(const fs::path& root, const vector<string>& extensions, vector<string>& ret)
+void getImages(const fs::path& root, const vector<string>& extensions, vector<string>& ret)
 {
     if (!fs::exists(root) || !fs::is_directory(root)) return;
 
@@ -103,34 +103,39 @@ char extractEXIFOrientation(const string& img_name){
 }
 
 /*
-rotates an image clockwise
+rotates an image by angel
 */
-void rotateClockwise(Mat& img){
-    transpose(img, img);
-    flip(img, img, 1);
+void rotate_img(cv::Mat3b const &src, int angle)
+{
+    CV_Assert(angle % 90 == 0 && angle <= 360 && angle >= -360);
+    if(angle == 270 || angle == -90){
+        // Rotate clockwise 270 degrees
+        cv::transpose(src, src);
+        cv::flip(src, src, 0);
+    }else if(angle == 180 || angle == -180){
+        // Rotate clockwise 180 degrees
+        cv::flip(src, src, -1);
+    }else if(angle == 90 || angle == -270){
+        // Rotate clockwise 90 degrees
+        cv::transpose(src, src);
+        cv::flip(src, src, 1);
+    }else if(angle == 360 || angle == 0 || angle == -360){
+        if(src.data != src.data){
+            src.copyTo(src);
+        }
+    }
 }
 
 /*
 fixes image given its exif orientation
 */
 void rectifyByOrientation(Mat3b& img, char orientation){
-    switch (orientation){
-    case 1: break; //fine
-    case 6: //rotate clockwise
-        rotateClockwise(img);
-        break;
-    case 3: //flip vertically
-        //ignorance is the law
-        rotateClockwise(img);
-        rotateClockwise(img);
-        break;
-    case 8: // rotate counterclockwise
-        //even more ignorance!!!!
-        rotateClockwise(img);
-        rotateClockwise(img);
-        rotateClockwise(img);
-        break;
-    default: break;
+    if(orientation == 6){
+        rotate_img(img, 90);
+    }else if(orientation == 3){
+        rotate_img(img, 180);
+    }else if(orientation == 8){
+        rotate_img(img, 270);
     }
 }
 
@@ -142,8 +147,7 @@ void MainWindow::computePixelsAndIndex(const string& imagesSetFolder, Size s){
 
     vector<string> images;
     vector<string> extensions = { ".jpg", ".jpeg", ".JPG", ".JPEG" };
-    get_all(imagesSetFolder, extensions, images);
-
+    getImages(imagesSetFolder, extensions, images);
 
     for (unsigned i = 0; i < images.size(); ++i)
     {
