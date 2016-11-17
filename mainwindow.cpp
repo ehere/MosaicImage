@@ -235,44 +235,61 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btn_select_image_clicked()
 {
+    string directory = this->originalImageFilePath;
+    if(directory.empty()){
+        directory = current_working_directory();
+    }
     QString filename = QFileDialog::getOpenFileName(
                 this,
                 tr("Open File"),
-                current_working_directory().c_str(),
+                directory.c_str(),
                 "All files (*.*)"
                 );
-    ui->pic_path->setText(filename);
-    this->originalImageFilePath = filename.toUtf8().constData();
-    if(QString::compare(filename, QString())!=0){
-        QImage image;
-        bool valid = image.load(filename);
-        if(valid){
-            ui->pic_original->setPixmap(QPixmap::fromImage(image).scaled(ui->pic_original->size(),Qt::KeepAspectRatio));
-        }else{
-            //
+    if(!filename.toUtf8().isEmpty()){
+        ui->pic_path->setText(filename);
+        this->originalImageFilePath = filename.toUtf8().constData();
+
+        if(QString::compare(filename, QString())!=0){
+            QImage image;
+            bool valid = image.load(filename);
+            if(valid){
+                ui->pic_original->setPixmap(QPixmap::fromImage(image).scaled(ui->pic_original->size(),Qt::KeepAspectRatio));
+            }
         }
     }
 }
 
 void MainWindow::on_btn_select_imageset_folder_clicked()
 {
+    string directory = this->imagesSetFolder;
+    if(directory.empty()){
+        directory = current_working_directory();
+    }
     QString folder = QFileDialog::getExistingDirectory(
                 this,
                 tr("Select Folder"),
-                current_working_directory().c_str(),
+                directory.c_str(),
                 QFileDialog::ShowDirsOnly);
-    ui->pic_folder->setText(folder);
-    this->imagesSetFolder = folder.toUtf8().constData();
+    if(!folder.toUtf8().isEmpty()){
+        ui->pic_folder->setText(folder);
+        this->imagesSetFolder = folder.toUtf8().constData();
+    }
 }
 
 
 void MainWindow::on_btn_save_folder_clicked()
 {
+    string directory = this->targetFolder;
+    if(directory.empty()){
+        directory = current_working_directory().append("/untitled.png");
+    }
     QString folder = QFileDialog::getSaveFileName(this, tr("Save File"),
-                                                  "/home/untitled.png",
+                                                  directory.c_str(),
                                                   tr("Images (*.png *.xpm *.jpg)"));
-    ui->pic_final_path->setText(folder);
-    this->targetFolder = folder.toUtf8().constData();
+    if(!folder.toUtf8().isEmpty()){
+        ui->pic_final_path->setText(folder);
+        this->targetFolder = folder.toUtf8().constData();
+    }
 }
 
 QImage Mat2QImage(const cv::Mat3b &src) {
