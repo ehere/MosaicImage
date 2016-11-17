@@ -244,7 +244,7 @@ void MainWindow::on_btn_select_image_clicked()
                 this,
                 tr("Open File"),
                 directory.c_str(),
-                "All files (*.*)"
+                "Images (*.jpg *.jpeg *.bmp *.png *.tif *.tiff)"
                 );
     if(!filename.toUtf8().isEmpty()){
         ui->pic_path->setText(filename);
