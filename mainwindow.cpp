@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QPicture>
+#include <QMessageBox>
 #include <iostream>
 #include <opencv2\opencv.hpp>
 #include <windows.h>
@@ -304,6 +305,31 @@ QImage Mat2QImage(const cv::Mat3b &src) {
         return dest;
 }
 
+bool MainWindow::validateInput(){
+    if (this->originalImageFilePath.empty()){
+            QMessageBox msgBox;
+            msgBox.setText("กรุณาเลือกภาพที่ต้นแบบ");
+            msgBox.exec();
+            return false;
+    }else if( this->imagesSetFolder.empty()){
+        QMessageBox msgBox;
+        msgBox.setText("กรุณาเลือกโฟลเดอร์รูปภาพที่ต้องการนำมาสร้างภาพใหญ่");
+        msgBox.exec();
+        return false;
+    }else if ( this->targetFolder.empty()){
+        QMessageBox msgBox;
+        msgBox.setText("กรุณาเลือกที่บันทึกไฟล์");
+        msgBox.exec();
+        return false;
+    }else if (this->pixelSize.width * this->pixelSize.height == 0){
+        QMessageBox msgBox;
+        msgBox.setText("กรุณาใส่ความละเอียดของรูปภาพขนาดเล็กที่นำมาสร้างภาพใหญ่");
+        msgBox.exec();
+        return false;
+    }
+    return true;
+}
+
 void MainWindow::on_btn_start_clicked()
 {
     ui->btn_start->setEnabled(false);
@@ -317,7 +343,10 @@ void MainWindow::on_btn_start_clicked()
     this->resize_y = percent/100.0;
     //skip_interval
     this->skip_interval = 100;
-
+    if(!validateInput()){
+        ui->btn_start->setEnabled(true);
+        return;
+    }
     computePixelsAndIndex(this->imagesSetFolder, this->pixelSize);
 
     vector<ImageMean> index = this->pixelMeanVector;
@@ -327,7 +356,13 @@ void MainWindow::on_btn_start_clicked()
     cv::resize(src, src, Size(0, 0), this->resize_x, this->resize_y);
     Mat3b output(src.rows*this->pixelSize.height, src.cols*this->pixelSize.width);
     vector<unsigned char> forbidden(index.size());
-
+    if (index.size() == 0){
+        QMessageBox msgBox;
+        msgBox.setText("ไม่พบรูปภาพที่สามารถใช้ได้");
+        msgBox.exec();
+        ui->btn_start->setEnabled(true);
+        return;
+    }
     int percentage = 0;
     ui->status->setText("Rendering images...");
     ui->progressBar->setValue(percentage);
@@ -360,6 +395,8 @@ void MainWindow::on_btn_start_clicked()
     ui->status->setText("Done.");
     ui->progressBar->setValue(100);
     ui->btn_start->setEnabled(true);
+    this->pixelImageMap.clear();
+    this->pixelMeanVector.clear();
 }
 
 

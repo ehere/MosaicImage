@@ -52,6 +52,8 @@ private slots:
     void computePixelsAndIndex(const string& imagesSetFolder, Size s);
 
 private:
+    bool validateInput();
+
     Ui::MainWindow *ui;
     string targetFolder;
     string originalImageFilePath;
@@ -60,8 +62,6 @@ private:
     string input_image;
     double resize_x;
     double resize_y;
-    char pixelize;
-    char mosaicize;
     unsigned skip_interval;
     map<string,Mat3b> pixelImageMap;
     vector<ImageMean> pixelMeanVector;
