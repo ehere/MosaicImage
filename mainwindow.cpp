@@ -54,21 +54,9 @@ void getImages(const fs::path& root, const vector<string>& extensions, vector<st
 computes the mean color of an image
 */
 Vec3b mean(const Mat3b& m){
-    unsigned long b = 0;
-    unsigned long g = 0;
-    unsigned long r = 0;
-
-    unsigned char *data = (unsigned char*)(m.data);
-    for (int r_c = 0; r_c < m.rows; ++r_c){
-        for (int c_c = 0; c_c < m.cols * 3; c_c = c_c + 3){
-            b += data[m.step * r_c + c_c];
-            g += data[m.step * r_c + c_c + 1];
-            r += data[m.step * r_c + c_c + 2];
-        }
-    }
-    unsigned nPix = m.rows*m.cols;
-
-    return Vec3b(b / nPix, g / nPix, r / nPix);
+    cv::Scalar mean;
+    mean = cv::mean(m);
+    return Vec3b(mean[0], mean[1], mean[2]);
 }
 
 /*
