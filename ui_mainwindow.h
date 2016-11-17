@@ -94,7 +94,7 @@ public:
         label_3->setFont(font);
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(230, 180, 221, 31));
+        label_4->setGeometry(QRect(110, 180, 221, 31));
         label_4->setFont(font);
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
@@ -151,10 +151,10 @@ public:
         height->setGeometry(QRect(420, 130, 51, 31));
         comboBox = new QComboBox(centralWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(470, 180, 41, 31));
+        comboBox->setGeometry(QRect(360, 180, 71, 31));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(520, 180, 31, 31));
+        label_8->setGeometry(QRect(440, 180, 31, 31));
         QFont font2;
         font2.setFamily(QStringLiteral("Cordia New"));
         font2.setPointSize(14);
@@ -185,7 +185,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        comboBox->setCurrentIndex(4);
+        comboBox->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -214,8 +214,6 @@ public:
         height->setText(QApplication::translate("MainWindow", "50", 0));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "1", 0)
-         << QApplication::translate("MainWindow", "2", 0)
          << QApplication::translate("MainWindow", "3", 0)
          << QApplication::translate("MainWindow", "4", 0)
          << QApplication::translate("MainWindow", "5", 0)
@@ -224,6 +222,11 @@ public:
          << QApplication::translate("MainWindow", "8", 0)
          << QApplication::translate("MainWindow", "9", 0)
          << QApplication::translate("MainWindow", "10", 0)
+         << QApplication::translate("MainWindow", "11", 0)
+         << QApplication::translate("MainWindow", "12", 0)
+         << QApplication::translate("MainWindow", "13", 0)
+         << QApplication::translate("MainWindow", "14", 0)
+         << QApplication::translate("MainWindow", "15", 0)
         );
         label_8->setText(QApplication::translate("MainWindow", "%", 0));
         label_9->setText(QApplication::translate("MainWindow", "X", 0));
