@@ -248,8 +248,9 @@ void MainWindow::on_btn_select_image_clicked()
                 );
     if(!filename.toUtf8().isEmpty()){
         ui->pic_path->setText(filename);
-        this->originalImageFilePath = filename.toUtf8().constData();
+        ui->pic_process->clear();
 
+        this->originalImageFilePath = filename.toUtf8().constData();
         if(QString::compare(filename, QString())!=0){
             QImage image;
             bool valid = image.load(filename);
